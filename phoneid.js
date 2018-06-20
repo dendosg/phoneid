@@ -1,13 +1,17 @@
 const axios = require('axios')
 const _ = require('lodash')
 const fs = require('fs')
+<<<<<<< HEAD
 let filename = 'result_1906_2'
+=======
+let filename = 'result_1906_2_conlai'
+>>>>>>> d0cfbdfb9cbfb8c9f4b1ea78c42555a568393f41
 let path_notfound = 'notFound_phone.txt'
 let path_fail = 'fail_phone.txt'
 let path_scaned_success = 'result/_ALL.txt'
 // let dataScaned_fail = fs.readFileSync(path_notfound).toString()
 
-let phones = fs.readFileSync('phone/' + filename + '.txt').toString().split('\r\n')
+let phones = fs.readFileSync('phone/' + filename + '.txt').toString().split('\n')
 let arrPhones = _.chunk(phones, 60)
 
 let count_success = 0
