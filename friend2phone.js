@@ -2,7 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio')
 var _ = require('lodash')
 var fs = require('fs');
-let uids = fs.readFileSync('list_uid.txt').toString().split('\r\n')
+let uids = fs.readFileSync('uid_2k_friend/list_uid.txt').toString().split('\n')
 let uids_scaned = fs.readFileSync('list_uid_scaned.txt').toString()
 let headers = {
     'Connection': 'keep-alive',
@@ -15,11 +15,12 @@ let headers = {
     'Cookie': 'PHPSESSID=tc0t8hi842v1kdj3mbdt7dv5m3; _ga=GA1.2.835735398.1526179118; __cfduid=d17a8afa859e8c3704d86a844cc9a72c81526369347; _gid=GA1.2.1353304028.1529330154; profile_id=9029; email=tgdd76214^%^40gmail.com; account_id=3826; special=EAAAAUaZA8jlABALcZAQn4hoLJeKMewgCN8g3MWsmtrrKZACoIajf9vSfLUdxC1naUCuVVBAIhSYyEEQAzzemWLxadf1BB7YorS9osmzJcYr7JYhEcOISmOTurLh7ZCCpCKL0Ci7Pr81YZAlG1uaGC60p7gJXwCUea1YJOKKdZAxgZDZD'
 };
 
-let arrUIDs = _.chunk(uids, 10)
+let arrUIDs = _.chunk(uids, 1)
 start()
 async function start() {
     for (let i = 0; i < arrUIDs.length; i++) {
         let arrUID = arrUIDs[i]
+        console.log('Getting ', arrUID)
         let arrResult = await getByArrUID(arrUID)
         fs.appendFileSync('result/phone_friend.txt', arrResult.join('\n') + '\n')
         console.log(i, arrUIDs.length, arrResult.length, 'Saved')
@@ -80,6 +81,7 @@ function getByUID(uid) {
                         }
                     })
                 } else {
+                    console.log(uid, 'Fail', 'Status code: ' + response.statusCode)
                     resolve(0)
                 }
             } else {
