@@ -2,9 +2,7 @@ const axios = require('axios')
 const _ = require('lodash')
 const fs = require('fs')
 
-
-
-let filename = 'result_1906_3'
+let filename = 'result_1906_3_conlai_2'
 
 let path_notfound = 'notFound_phone.txt'
 let path_fail = 'fail_phone.txt'
